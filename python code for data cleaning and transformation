@@ -1,0 +1,18 @@
+import pandas as pd
+
+df = pd.read_csv(r"C:\Users\bharg\Desktop\worldpopulation.csv", skiprows=4)
+
+df = df.dropna(axis=1, how='all')
+
+melted_df = df.melt(
+    id_vars=['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code'],
+    var_name='Year',
+    value_name='Population'
+)
+
+melted_df.dropna(subset=['Population'], inplace=True)
+
+melted_df['Year'] = melted_df['Year'].astype(int)
+melted_df['Population'] = pd.to_numeric(melted_df['Population'])
+
+print(melted_df.head())
