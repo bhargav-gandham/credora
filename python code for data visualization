@@ -1,0 +1,16 @@
+import matplotlib.pyplot as plt
+
+data_2023 = melted_df[melted_df['Year'] == 2023]
+
+
+top10 = data_2023.sort_values(by='Population', ascending=False).head(10)
+
+# Plot bar chart
+plt.figure(figsize=(12,6))
+plt.bar(top10['Country Name'], top10['Population'])
+plt.title('Top 10 Most Populous Countries in 2023')
+plt.xlabel('Country Name')
+plt.ylabel('Population')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
